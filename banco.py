@@ -1,8 +1,6 @@
 import datetime
 import sqlite3
 
-from numpy import integer
-
 import criarBanco
 import pandas as pd
 from pathlib import Path
@@ -14,7 +12,7 @@ def is_empty(cursor):
     return resultado == 0
 
 def verificar_livro_existente(id : int):
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
@@ -25,7 +23,7 @@ def verificar_livro_existente(id : int):
     return resultado == 0
 
 def impirmir_livro(id : int):
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
 
@@ -38,7 +36,7 @@ def impirmir_livro(id : int):
     return livro.to_string(index=False)
 
 def backup_banco():
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     # Conectando ao banco original
     conexao = sqlite3.connect(diretorio_banco)
@@ -49,7 +47,7 @@ def backup_banco():
 
     # Pegando dados para a criação do backup
     data_hora = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    diretorio_backup = Path(f'./backups/backup_livraria_{data_hora}.db')
+    diretorio_backup = Path(f'./meu_sistema_livraria/backups/backup_livraria_{data_hora}.db')
 
     if not diretorio_backup.parent.exists():
         diretorio_backup.parent.mkdir(parents=True, exist_ok=True)
@@ -74,7 +72,7 @@ def backup_banco():
     return str(diretorio_backup)
 
 def adicionar(titulo : str, autor : str, ano : int, preco : float):
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
@@ -91,7 +89,7 @@ def adicionar(titulo : str, autor : str, ano : int, preco : float):
     conexao.close()
 
 def exibir_livros():
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
 
@@ -100,7 +98,7 @@ def exibir_livros():
     return tabela_livros.to_string(index=False)
 
 def atualizar_preco(id : int, preco : float):
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
@@ -118,7 +116,7 @@ def atualizar_preco(id : int, preco : float):
     conexao.close()
 
 def remover_livro(id : int):
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
@@ -131,7 +129,7 @@ def remover_livro(id : int):
     conexao.close()
 
 def buscar_por_autor(nome_autor):
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
@@ -145,7 +143,7 @@ def buscar_por_autor(nome_autor):
     return tabela_livro.to_string(index=False)
 
 def exportar_livros(nome_arquivo : str):
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
@@ -153,7 +151,7 @@ def exportar_livros(nome_arquivo : str):
     query = 'SELECT * FROM livros'
     tabela_livros = pd.read_sql_query(query, conexao)
 
-    diretorio_exportado = Path(f'./exports/{nome_arquivo}.csv')
+    diretorio_exportado = Path(f'./meu_sistema_livraria/exports/{nome_arquivo}.csv')
 
     if not diretorio_exportado.parent.exists():
         diretorio_exportado.parent.mkdir(parents=True, exist_ok=True)
@@ -165,12 +163,12 @@ def exportar_livros(nome_arquivo : str):
     return str(diretorio_exportado)
 
 def importar_livros(nome_arquivo):
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
 
-    diretorio_imports = Path(f'./imports/{nome_arquivo}.csv')
+    diretorio_imports = Path(f'./meu_sistema_livraria/imports/{nome_arquivo}.csv')
 
     try:
         df = pd.read_csv(diretorio_imports)

@@ -3,6 +3,9 @@ import banco
 
 from pathlib import Path
 
+diretorio_livraria = Path("meu_sistema_livraria")
+diretorio_livraria.mkdir(parents=True, exist_ok=True)
+
 def adicionar_livro():
     print('-- ADICIONAR LIVRO --')
 
@@ -38,7 +41,7 @@ def adicionar_livro():
     print('Livro adicionado com sucesso!')
 
 def listar_arquivos():
-    caminho = Path('./imports')
+    caminho = Path('./meu_sistema_livraria/imports')
 
     if not caminho.exists():
         caminho.mkdir(parents=True, exist_ok=True)
@@ -59,11 +62,11 @@ def listar_arquivos():
     else:
         print("Diretório não encontrado.")
 
-diretorio_exports = Path('./exports')
+diretorio_exports = Path('./meu_sistema_livraria/exports')
 if not diretorio_exports.exists():
     diretorio_exports.mkdir(parents=True, exist_ok=True)
 
-diretorio_imports = Path('./imports')
+diretorio_imports = Path('./meu_sistema_livraria/imports')
 if not diretorio_imports.exists():
     diretorio_imports.mkdir(parents=True, exist_ok=True)
 

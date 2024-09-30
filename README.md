@@ -11,6 +11,8 @@
 ## Gerenciador
 
 Em primeira mão, terá um arquivo de exemplo: "*./imports/livros.csv*", se quiser use-o para testar
+<br>
+Para importar um arquivo .csv, basta colocar o arquivo dentro da pasta "*./imports*"
 
 O programa tem tais funções:
 - Adicionar livro

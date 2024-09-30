@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 
 def criar():
-    diretorio_banco = Path('./data/livros.db')
+    diretorio_banco = Path('./meu_sistema_livraria/data/livros.db')
 
     if not diretorio_banco.parent.exists():
         diretorio_banco.parent.mkdir(parents=True, exist_ok=True)
