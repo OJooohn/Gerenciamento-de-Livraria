@@ -4,6 +4,9 @@ from pathlib import Path
 def criar():
     diretorio_banco = Path('./data/livros.db')
 
+    if not diretorio_banco.parent.exists():
+        diretorio_banco.parent.mkdir(parents=True, exist_ok=True)
+
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
 

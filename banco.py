@@ -48,6 +48,9 @@ def backup_banco():
     data_hora = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     diretorio_backup = Path(f'./backups/backup_livraria_{data_hora}.db')
 
+    if not diretorio_backup.parent.exists():
+        diretorio_backup.parent.mkdir(parents=True, exist_ok=True)
+
     backup = sqlite3.connect(diretorio_backup)
 
     backup.cursor().execute('''
@@ -148,6 +151,10 @@ def exportar_livros(nome_arquivo : str):
     tabela_livros = pd.read_sql_query(query, conexao)
 
     diretorio_exportado = Path(f'./exports/{nome_arquivo}.csv')
+
+    if not diretorio_exportado.parent.exists():
+        diretorio_exportado.parent.mkdir(parents=True, exist_ok=True)
+
     tabela_livros.to_csv(diretorio_exportado, index=False)
 
     conexao.close()

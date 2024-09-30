@@ -40,14 +40,32 @@ def adicionar_livro():
 def listar_arquivos():
     caminho = Path('./imports')
 
-    if caminho.exists() and caminho.is_dir():
-        print("Arquivos encontrados:")
+    if not caminho.exists():
+        caminho.mkdir(parents=True, exist_ok=True)
 
-        for arquivo in caminho.iterdir():
-            if arquivo.is_file():
-                print(arquivo.name)
+    if caminho.is_dir():
+        arquivos = list(caminho.iterdir())
+        if arquivos:
+            print("Arquivos encontrados:")
+
+            for arquivo in arquivos:
+                if arquivo.is_file():
+                    print(arquivo.name)
+
+            return True
+        else:
+            print("Não há arquivos no diretório.")
+            return False
     else:
         print("Diretório não encontrado.")
+
+diretorio_exports = Path('./exports')
+if not diretorio_exports.exists():
+    diretorio_exports.mkdir(parents=True, exist_ok=True)
+
+diretorio_imports = Path('./imports')
+if not diretorio_imports.exists():
+    diretorio_imports.mkdir(parents=True, exist_ok=True)
 
 while True:
     print('1. Adicionar novo livro')
@@ -112,10 +130,11 @@ while True:
         nome_arquivo = input('Digite o nome do arquivo: ')
         print('>> Livros exportados para: ' + banco.exportar_livros(nome_arquivo))
     elif opcao == 7:
-        listar_arquivos()
-
-        nome_arquivo = input('Digite o nome do arquivo (sem o tipo do arquivo): ')
-        banco.importar_livros(nome_arquivo)
+        if not listar_arquivos():
+            print('>> Adicione um arquivo no diretório')
+        else:
+            nome_arquivo = input('Digite o nome do arquivo (sem o tipo do arquivo): ')
+            banco.importar_livros(nome_arquivo)
 
     elif opcao == 8:
         print('Backup criado em: ' + banco.backup_banco())
