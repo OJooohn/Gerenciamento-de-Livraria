@@ -1,0 +1,31 @@
+id,titulo,autor,ano_publicacao,preco
+1,A Guerra dos Tronos,George R. R. Martin,1996,89.99
+2,A Fúria dos Reis,George R. R. Martin,1998,89.99
+3,A Tormenta de Espadas,George R. R. Martin,2000,89.99
+4,Uma Canção de Gelo e Fogo,George R. R. Martin,1996,109.99
+5,O Senhor dos Anéis,J.R.R. Tolkien,1954,79.99
+6,O Hobbit,J.R.R. Tolkien,1937,39.99
+7,O Silmarillion,J.R.R. Tolkien,1977,59.99
+8,1984,George Orwell,1949,39.99
+9,Orgulho e Preconceito,Jane Austen,1813,29.99
+10,Emma,Jane Austen,1815,29.99
+11,Mansfield Park,Jane Austen,1814,34.99
+12,Cem Anos de Solidão,Gabriel García Márquez,1967,49.99
+13,Crônica de uma Morte Anunciada,Gabriel García Márquez,1981,39.99
+14,Amor nos Tempos do Cólera,Gabriel García Márquez,1985,59.99
+15,O Pequeno Príncipe,Antoine de Saint-Exupéry,1943,25.50
+16,O Morro dos Ventos Uivantes,Emily Brontë,1847,39.99
+17,Jane Eyre,Charlotte Brontë,1847,39.99
+18,Os Miseráveis,Victor Hugo,1862,44.99
+19,A Insustentável Leveza do Ser,Milan Kundera,1984,49.99
+20,As Crônicas de Nárnia,C.S. Lewis,1950,59.99
+21,O Grande Gatsby,F. Scott Fitzgerald,1925,29.99
+22,1984,George Orwell,1949,39.99
+23,As Aventuras de Tom Sawyer,Mark Twain,1876,19.99
+24,A Casa dos Espíritos,Isabel Allende,1982,49.50
+25,A Estrada,Cormac McCarthy,2006,39.99
+26,A Cor Púrpura,Alice Walker,1982,34.99
+27,A Metamorfose,Franz Kafka,1915,22.50
+28,Crime e Castigo,Fiódor Dostoiévski,1866,55.00
+29,Os Irmãos Karamazov,Fiódor Dostoiévski,1880,44.99
+30,Moby Dick,Herman Melville,1851,34.99
