@@ -93,27 +93,27 @@ while True:
     elif opcao == 2:
         print(banco.exibir_livros())
     elif opcao == 3:
-        nome_livro = input('Digite o nome do livro: ')
+        id_livro = int(input('Digite o id do livro: '))
 
-        if not banco.verificar_livro_existente(nome_livro):
+        if not banco.verificar_livro_existente(id_livro):
             preco = float(input('Digite o preço do livro: '))
-            banco.atualizar_preco(nome_livro, preco)
+            banco.atualizar_preco(id_livro, preco)
         else:
             print('>> Livro não existente no banco de dados')
 
     elif opcao == 4:
-        nome_livro = input('Digite o nome do livro: ')
+        id_livro = int(input('Digite o id do livro: '))
 
-        if not banco.verificar_livro_existente(nome_livro):
+        if not banco.verificar_livro_existente(id_livro):
             print('======= LIVRO =======')
-            print(banco.impirmir_livro(nome_livro))
+            print(banco.impirmir_livro(id_livro))
 
             while True:
                 confirmacao = input('Deseja confirmar a remoção do livro? [S/N] ').strip().upper()
 
                 if confirmacao == 'S':
-                    banco.remover_livro(nome_livro)
-                    print(f'>> Livro "{nome_livro}" removido com sucesso!')
+                    banco.remover_livro(id_livro)
+                    print(f'>> Livro "{id_livro}" removido com sucesso!')
                     break
                 elif confirmacao == 'N':
                     print('Remoção de livro cancelada!')

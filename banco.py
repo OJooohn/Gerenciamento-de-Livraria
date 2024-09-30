@@ -1,5 +1,8 @@
 import datetime
 import sqlite3
+
+from numpy import integer
+
 import criarBanco
 import pandas as pd
 from pathlib import Path
@@ -10,25 +13,25 @@ def is_empty(cursor):
 
     return resultado == 0
 
-def verificar_livro_existente(titulo : str):
+def verificar_livro_existente(id : int):
     diretorio_banco = Path('./data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
     cursor = conexao.cursor()
 
-    cursor.execute('SELECT COUNT(*) FROM livros WHERE titulo = ?', (titulo, ))
+    cursor.execute('SELECT COUNT(*) FROM livros WHERE id = ?', (id, ))
     resultado = cursor.fetchone()[0]
 
     return resultado == 0
 
-def impirmir_livro(titulo : str):
+def impirmir_livro(id : int):
     diretorio_banco = Path('./data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
 
-    query = 'SELECT titulo, autor, ano_publicacao, preco FROM livros WHERE titulo = ?'
+    query = 'SELECT id, titulo, autor, ano_publicacao, preco FROM livros WHERE id = ?'
 
-    livro = pd.read_sql_query(query, conexao, params=(titulo,))
+    livro = pd.read_sql_query(query, conexao, params=(id,))
 
     conexao.close()
 
@@ -92,11 +95,11 @@ def exibir_livros():
 
     conexao = sqlite3.connect(diretorio_banco)
 
-    query = 'SELECT titulo, autor, ano_publicacao, preco FROM livros'
+    query = 'SELECT id, titulo, autor, ano_publicacao, preco FROM livros'
     tabela_livros = pd.read_sql_query(query, conexao)
     return tabela_livros.to_string(index=False)
 
-def atualizar_preco(titulo : str, preco : float):
+def atualizar_preco(id : int, preco : float):
     diretorio_banco = Path('./data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
@@ -105,8 +108,8 @@ def atualizar_preco(titulo : str, preco : float):
     backup_banco()
 
     cursor.execute('''
-        UPDATE livros SET preco = ? WHERE titulo = ?
-    ''', (preco, titulo))
+        UPDATE livros SET preco = ? WHERE id = ?
+    ''', (preco, id))
 
     conexao.commit()
 
@@ -114,7 +117,7 @@ def atualizar_preco(titulo : str, preco : float):
 
     conexao.close()
 
-def remover_livro(titulo : str):
+def remover_livro(id : int):
     diretorio_banco = Path('./data/livros.db')
 
     conexao = sqlite3.connect(diretorio_banco)
@@ -122,7 +125,7 @@ def remover_livro(titulo : str):
 
     backup_banco()
 
-    cursor.execute('DELETE FROM livros WHERE titulo = ?', (titulo, ))
+    cursor.execute('DELETE FROM livros WHERE id = ?', (id, ))
     conexao.commit()
 
     conexao.close()
